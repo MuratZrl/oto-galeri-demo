@@ -12,7 +12,7 @@ export const site = {
   /** Used in wa.me links: country code + number, digits only. */
   whatsappNumber: "905416577925",
   address: {
-    street: "Kurtköy Mah. Ankara Cad. No: 123",
+    street: "Kurtköy Mah. Ankara Cad.",
     district: "Pendik",
     city: "İstanbul",
   },
@@ -23,3 +23,6 @@ export const site = {
 } as const;
 
 export const fullAddress = `${site.address.street}, ${site.address.district} / ${site.address.city}`;
+
+/** Plain address string for Google Maps queries. */
+export const mapQuery = `${site.address.street} ${site.address.district}, ${site.address.city}`;

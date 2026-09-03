@@ -71,5 +71,4 @@ Fotoğrafları bir CDN'den çekecekseniz `next.config.ts` içine `images.remoteP
 ### Yayına almadan önce
 
 - `src/app/layout.tsx` ve sayfa dosyalarındaki `robots: { index: false, follow: false }` satırlarını kaldırın veya `index: true` yapın.
-- Ana sayfadaki harita yer tutucusunu gerçek bir Google Haritalar yerleşimiyle değiştirin (`src/app/page.tsx`, `id="iletisim"` bölümü).
 - Footer'daki "Bu site bir tanıtım demosudur" notunu silin (`src/components/Footer.tsx`).

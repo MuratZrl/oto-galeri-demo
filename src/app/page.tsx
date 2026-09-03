@@ -10,7 +10,7 @@ import {
   PhoneIcon,
   WhatsAppIcon,
 } from "@/components/icons";
-import { fullAddress, site } from "@/config/site";
+import { fullAddress, mapQuery, site } from "@/config/site";
 import { cars, featuredCars } from "@/data/cars";
 import { telHref, whatsappUrl } from "@/lib/format";
 
@@ -217,25 +217,25 @@ export default function HomePage() {
             </a>
           </div>
 
-          <div
-            role="img"
-            aria-label="Harita alanı"
-            className="relative min-h-72 overflow-hidden rounded-2xl border-2 border-dashed border-line bg-paper-deep"
-          >
-            <div
-              aria-hidden
-              className="absolute inset-0 opacity-40 [background-image:linear-gradient(var(--color-line)_1px,transparent_1px),linear-gradient(90deg,var(--color-line)_1px,transparent_1px)] [background-size:32px_32px]"
+          <div className="flex flex-col gap-3">
+            <iframe
+              src={`https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=15&output=embed`}
+              title="Harita"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              className="h-80 w-full rounded-2xl border border-line bg-paper-deep shadow-sm lg:h-[400px]"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
-              <span className="grid h-14 w-14 place-items-center rounded-full bg-accent text-white shadow-lg shadow-accent/30">
-                <MapPinIcon className="h-7 w-7" />
-              </span>
-              <p className="font-display text-lg font-bold">Harita alanı</p>
-              <p className="max-w-xs text-sm text-ink-soft/80">
-                Gerçek sitede buraya Google Haritalar yerleşimi ve yol tarifi
-                bağlantısı eklenir.
-              </p>
-            </div>
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapQuery)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 self-start text-sm font-bold text-ink underline-offset-4 transition hover:text-accent hover:underline"
+            >
+              <MapPinIcon className="h-4 w-4" />
+              Yol tarifi al
+              <ArrowRightIcon className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </section>
