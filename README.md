@@ -6,7 +6,7 @@ Pendik / İstanbul'daki kurgusal bir ikinci el araç galerisi için tanıtım si
 
 - Next.js (App Router, TypeScript strict)
 - Tailwind CSS v4
-- next/image + picsum.photos (sabit seed'li yer tutucu fotoğraflar)
+- next/image, fotoğraflar `public/cars/` altında yerel dosya olarak
 - next/font/google: Bricolage Grotesque (başlıklar), Manrope (metin)
 
 ## Çalıştırma
@@ -53,21 +53,20 @@ Galeri adı, slogan, telefon, WhatsApp numarası, adres ve çalışma saatleri b
 | --- | --- |
 | `slug` | URL'de kullanılır, benzersiz olmalı (`/araclar/<slug>`) |
 | `brand`, `model`, `year`, `km`, `color` | Teknik özellikler tablosunda ve kartlarda gösterilir |
-| `fuel` | `Benzin`, `Dizel` veya `Hibrit` |
+| `fuel` | `Benzin`, `Dizel`, `Hibrit` veya `Elektrik` |
 | `gearbox` | `Manuel` veya `Otomatik` |
 | `price` | TL cinsinden tam sayı, biçimlendirme otomatik yapılır |
 | `description` | 2-3 cümlelik açıklama |
-| `photos` | 5-6 fotoğraf URL'si; ilk fotoğraf kart ve kapak görseli olur |
+| `photos` | Fotoğraf yolları; ilk fotoğraf kart ve kapak görseli olur |
 | `featured` | `true` olanlar ana sayfadaki "Öne çıkan araçlar" bölümünde çıkar |
 
 Filtrelerdeki marka listesi ve fiyat aralıkları bu diziden otomatik türetilir; ayrıca bir yerde güncelleme gerekmez.
 
 ### Fotoğraflar
 
-Demo, `picsum.photos` üzerinden rastgele ama sabit görseller kullanır. Gerçek fotoğraflar için:
+Fotoğraflar `public/cars/<slug>/1.jpg`, `2.jpg`, ... yolunda tutulur; `photos` alanı `photoSet(slug, adet)` ile bu yolları üretir. Yeni bir araç eklerken aynı adla bir klasör açıp fotoğrafları sırayla numaralandırın, ilk fotoğraf kapak olur. Fotoğrafları yüklemeden önce uzun kenarı 1600 piksele küçültmek sayfa hızı için yeterlidir.
 
-1. Dosyaları `public/cars/` altına koyup `photos` alanına `/cars/egea-1.jpg` gibi yollar yazın, veya
-2. Bir CDN kullanıyorsanız `next.config.ts` içindeki `images.remotePatterns` listesine o alan adını ekleyin ve `picsum.photos` girdisini silin.
+Fotoğrafları bir CDN'den çekecekseniz `next.config.ts` içine `images.remotePatterns` ekleyin ve `photos` alanına tam URL yazın.
 
 ### Yayına almadan önce
 

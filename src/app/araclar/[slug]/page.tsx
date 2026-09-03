@@ -37,7 +37,6 @@ export async function generateMetadata({
     openGraph: {
       title: `${title} | ${site.name}`,
       description,
-      images: [{ url: car.photos[0], width: 1200, height: 800, alt: title }],
     },
   };
 }

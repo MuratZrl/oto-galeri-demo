@@ -1,4 +1,4 @@
-export const fuels = ["Benzin", "Dizel", "Hibrit"] as const;
+export const fuels = ["Benzin", "Dizel", "Hibrit", "Elektrik"] as const;
 export const gearboxes = ["Manuel", "Otomatik"] as const;
 
 export type Fuel = (typeof fuels)[number];
@@ -21,11 +21,9 @@ export interface Car {
   featured: boolean;
 }
 
-function photoSet(seed: string, count: number): string[] {
-  return Array.from(
-    { length: count },
-    (_, i) => `https://picsum.photos/seed/${seed}-${i + 1}/1200/800`,
-  );
+/** Local photos live in public/cars/<slug>/1.jpg .. <count>.jpg */
+function photoSet(slug: string, count: number): string[] {
+  return Array.from({ length: count }, (_, i) => `/cars/${slug}/${i + 1}.jpg`);
 }
 
 export const cars: readonly Car[] = [
@@ -41,82 +39,52 @@ export const cars: readonly Car[] = [
     price: 780_000,
     description:
       "İlk sahibinden, tüm bakımları yetkili serviste yapılmış Egea. Değişensiz ve boyasız, ekspertiz raporu mevcut. Ekonomik yakıt tüketimiyle günlük kullanım için ideal.",
-    photos: photoSet("egea-2021", 5),
+    photos: photoSet("fiat-egea-2021", 4),
     featured: true,
   },
   {
-    slug: "renault-clio-2022",
+    slug: "renault-clio-rs-2011",
     brand: "Renault",
-    model: "Clio 1.0 TCe Touch",
-    year: 2022,
-    km: 45_000,
+    model: "Clio III 2.0 RS",
+    year: 2011,
+    km: 140_000,
     fuel: "Benzin",
-    gearbox: "Otomatik",
-    color: "Gri",
-    price: 950_000,
-    description:
-      "Düşük kilometreli, garantisi devam eden otomatik vites Clio. Geri görüş kamerası, dijital gösterge paneli ve Apple CarPlay desteği bulunuyor. Takas ve kredi imkanı vardır.",
-    photos: photoSet("clio-2022", 6),
-    featured: true,
-  },
-  {
-    slug: "toyota-corolla-hybrid-2021",
-    brand: "Toyota",
-    model: "Corolla 1.8 Hybrid Dream",
-    year: 2021,
-    km: 92_000,
-    fuel: "Hibrit",
-    gearbox: "Otomatik",
-    color: "Gümüş",
-    price: 1_350_000,
-    description:
-      "Şehir içinde 4 litrenin altında yakıt tüketen hibrit Corolla. Hibrit batarya garantisi devam ediyor, servis geçmişi eksiksiz. Hatasız, değişensiz araç.",
-    photos: photoSet("corolla-2021", 6),
-    featured: true,
-  },
-  {
-    slug: "volkswagen-passat-2019",
-    brand: "Volkswagen",
-    model: "Passat 1.6 TDI Business",
-    year: 2019,
-    km: 145_000,
-    fuel: "Dizel",
-    gearbox: "Otomatik",
+    gearbox: "Manuel",
     color: "Siyah",
-    price: 1_450_000,
+    price: 875_000,
     description:
-      "Uzun yol için düşünülmüş, DSG şanzımanlı dizel Passat. Deri döşeme, LED farlar ve adaptif hız sabitleyici standart. Yeni lastikler ve yeni triger bakımı yapıldı.",
-    photos: photoSet("passat-2019", 5),
-    featured: false,
+      "Renault Sport imzalı, doğal emişli 2.0 motoruyla 200 beygir üreten Clio III RS. Orijinal jantları ve Recaro koltukları yerinde, koleksiyon değeri her yıl artıyor. Bakımları düzenli, ağır hasar kaydı yok.",
+    photos: photoSet("renault-clio-rs-2011", 4),
+    featured: true,
   },
   {
-    slug: "honda-civic-2020",
-    brand: "Honda",
-    model: "Civic 1.6 i-VTEC Eco Elegance",
-    year: 2020,
-    km: 78_000,
+    slug: "mercedes-a180-2017",
+    brand: "Mercedes-Benz",
+    model: "A180 1.6 AMG Line",
+    year: 2017,
+    km: 110_000,
     fuel: "Benzin",
     gearbox: "Otomatik",
     color: "Kırmızı",
-    price: 1_250_000,
+    price: 1_690_000,
     description:
-      "Sorunsuz motoruyla bilinen 1.6 i-VTEC Civic, tek elden ve bakımlı. Cam tavan, ısıtmalı koltuklar ve kör nokta kamerası mevcut. Ağır hasar kaydı yok, ekspertiz raporuyla teslim edilir.",
-    photos: photoSet("civic-2020", 6),
-    featured: false,
+      "AMG Line paketli, 7G-DCT çift kavramalı şanzımanlı A180. Panoramik cam tavan, LED farlar ve geri görüş kamerası mevcut. Yetkili servis bakımlı, ekspertiz raporuyla teslim edilir.",
+    photos: photoSet("mercedes-a180-2017", 5),
+    featured: true,
   },
   {
-    slug: "hyundai-i20-2020",
-    brand: "Hyundai",
-    model: "i20 1.4 MPI Style",
-    year: 2020,
-    km: 61_000,
-    fuel: "Benzin",
+    slug: "mercedes-amg-eqe-53-2023",
+    brand: "Mercedes-Benz",
+    model: "AMG EQE 53 4MATIC+",
+    year: 2023,
+    km: 25_000,
+    fuel: "Elektrik",
     gearbox: "Otomatik",
-    color: "Mavi",
-    price: 820_000,
+    color: "Siyah",
+    price: 5_950_000,
     description:
-      "Şehir içi kullanım için pratik, otomatik vitesli i20. Park sensörü, geri görüş kamerası ve ısıtmalı direksiyon bulunuyor. Boyasız ve değişensiz, ekspertizli araç.",
-    photos: photoSet("i20-2020", 5),
+      "Çift elektrik motorundan 625 beygir üreten, dört çeker AMG EQE 53. 0-100 km/s hızlanması 3,5 saniye, WLTP menzili 500 kilometrenin üzerinde. İlk sahibinden, garantisi devam ediyor, hatasız.",
+    photos: photoSet("mercedes-amg-eqe-53-2023", 5),
     featured: false,
   },
 ];

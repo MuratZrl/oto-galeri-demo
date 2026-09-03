@@ -22,11 +22,10 @@ const brands = Array.from(new Set(cars.map((car) => car.brand))).sort((a, b) =>
 );
 
 const PRICE_STEP = 250_000;
-const maxCarPrice = Math.max(...cars.map((car) => car.price));
+/** One cap per car, rounded up to the next step, deduplicated and ascending. */
 const priceCaps = Array.from(
-  { length: Math.ceil(maxCarPrice / PRICE_STEP) },
-  (_, i) => (i + 1) * PRICE_STEP,
-).filter((cap) => cap >= Math.min(...cars.map((car) => car.price)));
+  new Set(cars.map((car) => Math.ceil(car.price / PRICE_STEP) * PRICE_STEP)),
+).sort((a, b) => a - b);
 
 const PARAM = {
   brand: "marka",
