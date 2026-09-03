@@ -6,11 +6,11 @@ export const site = {
   description:
     "Pendik / İstanbul'da ekspertiz raporlu, takas ve kredi imkanlı ikinci el araçlar. Demo Oto Galeri.",
   /** Shown to visitors. */
-  phoneDisplay: "0216 555 00 00",
+  phoneDisplay: "0541 657 79 25",
   /** Used in tel: links, E.164 format. */
-  phoneE164: "+902165550000",
+  phoneE164: "+905416577925",
   /** Used in wa.me links: country code + number, digits only. */
-  whatsappNumber: "905551234567",
+  whatsappNumber: "905416577925",
   address: {
     street: "Kurtköy Mah. Ankara Cad. No: 123",
     district: "Pendik",
